@@ -1,19 +1,18 @@
 #ifndef PILHA_H
 #define PILHA_H
 
+#include "bloco.h"
 #include <stdbool.h>
 
 typedef struct PilhaBloco
 {
-  unsigned long tamanho;
-  struct PilhaBloco *proximo;
-  char dado[];
+  struct PilhaBloco *anterior;
+  Bloco *bloco;
 } PilhaBloco;
 
 typedef struct
 {
   PilhaBloco *topo;
-  // PilhaBlock *base;
 } Pilha;
 
 void pilha_init(Pilha *pilha);
