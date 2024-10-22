@@ -1,5 +1,6 @@
 #include "bloco.h"
 #include "pilha.h"
+#include "lista.h"
 #include <stdio.h>
 #include <locale.h> 
 
@@ -9,6 +10,17 @@ void lista_produtos(/*lista de produtos...(?));
 void dar_lance(/*lista de produtos...(?));
 void avisa_usuario(/*lista de produtos...(?));
 void encerra(/*lista de produtos...(?)); */ 
+
+void cadastra_produto(){
+  Lista *Lista_Prod;
+  lista_init(Lista_Prod);
+  char nome[100];
+  printf("Entre com o nome do produto:");
+  scanf("%s", nome);
+  printf("Produto cadastrado com sucesso!\n");
+}
+
+
 
 int main()
 {
@@ -29,7 +41,7 @@ int main()
     case 1: // cadastra um produto
       printf("Resposta: 1\n");
       if(cont_cadastros == 0){
-        // *inicializa a lista
+        cadastra_produto();
       }
       //cadastra();
       printf("\n");
