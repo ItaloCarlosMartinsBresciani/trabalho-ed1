@@ -17,7 +17,7 @@ typedef struct
 
 void pilha_init(Pilha *pilha);
 void pilha_push(Pilha *pilha, void *dado, unsigned long tamanho);
-PilhaBloco *pilha_pop(Pilha *pilha);
+Bloco *pilha_pop(Pilha *pilha);
 bool pilha_vazia(Pilha *pilha);
 void pilha_limpar(Pilha *pilha);
 

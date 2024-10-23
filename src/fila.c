@@ -2,34 +2,35 @@
 #include "fila.h"
 #include "bloco.h"
 
-fila create(){
-    fila f;
-    f.ini=NULL;
-    f.fim=NULL;
-    f.total=0;
-    return f;
+void fila_init(Fila *f){
+    f->ini=NULL;
+    f->fim=NULL;
+    f->total=0;
 }
 
-int isempty(fila *f){
+int fila_vazia(Fila *f){
     if (f->total==0)
         return 1;
     return 0;
 }
-int inserir(fila *f, void *dado, unsigned long tamanho) {
+void fila_push(Fila *f, void *dado, unsigned long tamanho) {
 
     Bloco *novo_bloco = bloco_alocar(dado, tamanho);
     if (novo_bloco == NULL) {
         return 0; 
     }
-    if (isempty(f)) f->ini = novo_bloco;     
-    else f->fim->prox=novo_bloco;
+    if (fila_vazia(f)) {
+        f->ini = novo_bloco;
+    } else {
+        f->fim->prox = novo_bloco;
+    }
 
-    f->fim=novo_bloco;
-    f->fim->prox=NULL;
+    f->fim = novo_bloco;
+    f->fim->prox = NULL;
     f->total++;
-    return 1;  
 }
-int remover(fila *f, Bloco *x) {
+
+Bloco *fila_pop(Fila *f) {
 
     if (!isempty(f)) {
         Bloco *p;
@@ -43,7 +44,7 @@ int remover(fila *f, Bloco *x) {
     }
     return 0;  
 }
-int empty(fila *f) { 
+int empty(Fila *f) { 
     if (!isempty(f)) {
         while (!isempty(f)) {
             Bloco *bloco;

@@ -30,15 +30,16 @@ void pilha_push(Pilha *pilha, void *dado, unsigned long tamanho)
   pilha->topo = pilha_bloco;
 }
 
-PilhaBloco *pilha_pop(Pilha *pilha)
+Bloco *pilha_pop(Pilha *pilha)
 {
   if (pilha->topo == NULL)
   {
-    return;
+    return NULL;
   }
 
   Bloco *bloco = pilha->topo->bloco;
+  PilhaBloco *anterior = pilha->topo;
   pilha->topo = pilha->topo->anterior;
-  free(pilha->topo);
+  free(anterior);
   return bloco;
 }

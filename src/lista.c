@@ -22,11 +22,11 @@ bool lista_vazia(Lista *lista)
     }
 }
 
-ListaBloco *lista_pop(Lista *lista){
+Bloco *lista_pop(Lista *lista){
     if (lista_vazia(lista) == true){
         return NULL;
     }else{
-        ListaBloco * aux = lista->inicio;
+        Bloco * aux = lista->inicio;
         if (lista->inicio == lista->fim){
             lista->inicio = NULL;
             lista->fim = NULL;
