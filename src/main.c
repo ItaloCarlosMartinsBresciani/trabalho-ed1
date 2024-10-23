@@ -11,15 +11,29 @@ void dar_lance(/*lista de produtos...(?));
 void avisa_usuario(/*lista de produtos...(?));
 void encerra(/*lista de produtos...(?)); */ 
 
-void cadastra_produto(){
-  Lista *Lista_Prod;
-  lista_init(Lista_Prod);
-  char nome[100];
+void cadastra_produto(Lista *Lista_Prod){
+  
   printf("Entre com o nome do produto:");
+  char nome[50];
   scanf("%s", nome);
+  lista_push(Lista_Prod, nome, strlen(nome)+1);
   printf("Produto cadastrado com sucesso!\n");
 }
 
+void listar_produtos(Lista *Lista_produto){
+  Lista *aux;
+  lista_init(aux);
+  while (lista_vazia(Lista_produto) == false){
+    Bloco *bloco = lista_pop(Lista_produto);
+    lista_push(aux, bloco->dado, bloco->tamanho);
+    printf("%s\n", bloco->dado);
+  }
+
+  while(lista_vazia(aux) == false){
+    Bloco *bloco = lista_pop(aux);
+    lista_push(Lista_produto, bloco->dado, bloco->tamanho);
+  }
+}
 
 
 int main()
@@ -30,7 +44,8 @@ int main()
   
   int comando;
   
-
+  Lista *Lista_Prod;
+  lista_init(Lista_Prod);
   int cont_cadastros = 0;
   // Menu
   do{
@@ -41,7 +56,7 @@ int main()
     case 1: // cadastra um produto
       printf("Resposta: 1\n");
       if(cont_cadastros == 0){
-        cadastra_produto();
+        cadastra_produto(Lista_Prod);
       }
       //cadastra();
       printf("\n");
