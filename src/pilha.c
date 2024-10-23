@@ -2,6 +2,7 @@
 #include "bloco.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 void pilha_init(Pilha *pilha)
@@ -29,7 +30,7 @@ void pilha_push(Pilha *pilha, void *dado, unsigned long tamanho)
   pilha->topo = pilha_bloco;
 }
 
-Bloco *pilha_pop(Pilha *pilha)
+PilhaBloco *pilha_pop(Pilha *pilha)
 {
   if (pilha->topo == NULL)
   {

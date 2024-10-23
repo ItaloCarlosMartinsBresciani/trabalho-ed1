@@ -3,13 +3,14 @@
 #include "lista.h"
 #include <stdio.h>
 #include <locale.h> 
-
-/* Protótipos das funções
-void cadastra(/*lista de produtos, nome do produto);
-void lista_produtos(/*lista de produtos...(?));
-void dar_lance(/*lista de produtos...(?));
-void avisa_usuario(/*lista de produtos...(?));
-void encerra(/*lista de produtos...(?)); */ 
+#include <string.h>
+#include <stdlib.h>
+//  Protótipos das funções
+// void cadastra(/*lista de produtos, nome do produto);
+// void lista_produtos(/*lista de produtos...(?));
+// void dar_lance(/*lista de produtos...(?));
+// void avisa_usuario(/*lista de produtos...(?));
+// void encerra(/*lista de produtos...(?)); 
 
 void cadastra_produto(Lista *Lista_Prod){
   
@@ -24,15 +25,14 @@ void listar_produtos(Lista *Lista_produto){
   Lista *aux;
   lista_init(aux);
   while (lista_vazia(Lista_produto) == false){
-    Bloco *bloco = lista_pop(Lista_produto);
-    lista_push(aux, bloco->dado, bloco->tamanho);
-    printf("%s\n", bloco->dado);
+    lista_push(aux, lista_pop(Lista_produto)->bloco->dado, Lista_produto->inicio->bloco->tamanho);
+    printf("%s\n", aux->inicio->bloco->dado);
   }
 
   while(lista_vazia(aux) == false){
-    Bloco *bloco = lista_pop(aux);
-    lista_push(Lista_produto, bloco->dado, bloco->tamanho);
+    lista_push(Lista_produto, lista_pop(aux)->bloco->dado, aux->fim->bloco->tamanho);
   }
+  free(aux);
 }
 
 
@@ -55,20 +55,18 @@ int main()
     {
     case 1: // cadastra um produto
       printf("Resposta: 1\n");
-      if(cont_cadastros == 0){
-        cadastra_produto(Lista_Prod);
-      }
-      //cadastra();
+      cadastra_produto(Lista_Prod);
+      cont_cadastros++;
       printf("\n");
       break;
 
     case 2: // lista todos os produtos e os lances de cada um 
       printf("Resposta: 2\n");
-      if(1==1/*lista de produtos vazia*/)
+      if(cont_cadastros == 0)
       {
         printf("Não há produtos cadastrados\n");
       }else{
-        //lista_produtos();
+        listar_produtos(Lista_Prod);
         printf("Listagem completa\n");
       }
       printf("\n");
