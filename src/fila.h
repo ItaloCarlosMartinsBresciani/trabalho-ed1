@@ -3,17 +3,18 @@
 
 typedef struct FilaBloco
 {
-    struct FilaBloco *prox; 
+    struct FilaBloco *proximo; 
     Bloco *bloco;
 }FilaBloco;
 
 typedef struct{
-    FilaBloco *ini,*fim; 
+    FilaBloco *inicio,*fim; 
     int total;
 }Fila;
 
-void create(Fila *fila);
-int isempty(Fila *f);
-void inserir(Fila *f, void *dado, unsigned long tamanho);
-Bloco *remover(Fila *f);
-int empty(Fila *f);
+void fila_init(Fila *fila);
+int fila_vazia(Fila *f);
+void fila_push(Fila *f, void *dado, unsigned long tamanho);
+FilaBloco *fila_pop(Fila *f);
+void fila_print(Fila *fila);
+

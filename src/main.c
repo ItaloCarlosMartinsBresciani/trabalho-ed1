@@ -21,19 +21,6 @@ void cadastra_produto(Lista *Lista_Prod){
   printf("Produto cadastrado com sucesso!\n");
 }
 
-void listar_produtos(Lista *Lista_produto){
-  Lista *aux;
-  lista_init(aux);
-  while (lista_vazia(Lista_produto) == false){
-    lista_push(aux, lista_pop(Lista_produto)->bloco->dado, Lista_produto->inicio->bloco->tamanho);
-    printf("%s\n", aux->inicio->bloco->dado);
-  }
-
-  while(lista_vazia(aux) == false){
-    lista_push(Lista_produto, lista_pop(aux)->bloco->dado, aux->fim->bloco->tamanho);
-  }
-  free(aux);
-}
 
 
 int main()
@@ -44,9 +31,10 @@ int main()
   
   int comando;
   
-  Lista *Lista_Prod;
-  lista_init(Lista_Prod);
+  Lista Lista_Prod;
+  lista_init(&Lista_Prod);
   int cont_cadastros = 0;
+  
   // Menu
   do{
     printf("O que deseja fazer? ");
@@ -55,7 +43,7 @@ int main()
     {
     case 1: // cadastra um produto
       printf("Resposta: 1\n");
-      cadastra_produto(Lista_Prod);
+      cadastra_produto(&Lista_Prod);
       cont_cadastros++;
       printf("\n");
       break;
@@ -66,7 +54,7 @@ int main()
       {
         printf("Não há produtos cadastrados\n");
       }else{
-        listar_produtos(Lista_Prod);
+        lista_print(&Lista_Prod);
         printf("Listagem completa\n");
       }
       printf("\n");

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 void pilha_init(Pilha *pilha)
 {
@@ -13,8 +14,11 @@ void pilha_init(Pilha *pilha)
 void pilha_push(Pilha *pilha, void *dado, unsigned long tamanho)
 {
   Bloco *bloco = bloco_alocar(dado, tamanho);
+  assert(bloco!=NULL);
 
   PilhaBloco *pilha_bloco = malloc(sizeof(PilhaBloco));
+  assert(pilha_bloco!=NULL);
+
   pilha_bloco->bloco = bloco;
 
   memcpy(bloco->dado, dado, tamanho);
