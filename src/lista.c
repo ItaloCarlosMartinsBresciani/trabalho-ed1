@@ -1,15 +1,18 @@
-#include "lista.h"
 #include "bloco.h"
-#include <stdbool.h>
+#include "pilha.h"
+#include "lista.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <locale.h> 
 #include <string.h>
+#include <stdlib.h>
 #include <assert.h>
 
 void lista_init(Lista *lista)
 {
+    if (lista!=NULL){
     lista->inicio = NULL;
     lista->fim = NULL;
+    }
 }
 
 bool lista_vazia(Lista *lista)
@@ -50,10 +53,13 @@ ListaBloco *lista_pop(Lista *lista)
 
 void lista_print(Lista *lista)
 {
+    printf("entrou lista_print");
     assert(lista != NULL);
     ListaBloco *aux = lista->inicio;
     PilhaBloco *aux2 = aux->pilha->topo;
     FilaBloco *aux3 = aux2->fila->inicio;
+    printf("minipulou os blocos legal");
+    
     while (aux != NULL)
     {
         printf("%s\n", aux->bloco->dado);
@@ -89,16 +95,12 @@ void lista_push(Lista *lista, void *dado, unsigned long tamanho)
 {
     Bloco *B = bloco_alocar(dado, tamanho);
     assert(B != NULL);
-    printf("erro 1");
 
     ListaBloco *Lista_bloco = (ListaBloco *)malloc(sizeof(ListaBloco));
     assert(Lista_bloco != NULL);
-    printf("erro 2");
 
     Pilha *P; //criamos uma pilha de lances ligado a cada produto (listabloco)
     pilha_init(P);
-
-    printf("erro 3");
 
     Lista_bloco->pilha= P;
     Lista_bloco->bloco = B;

@@ -1,5 +1,6 @@
 #ifndef FILA_H
 #define FILA_H
+
 //filas (de usuários que deram cada lance, por produto)
 #include "bloco.h"
 

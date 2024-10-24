@@ -14,11 +14,18 @@
 
 void cadastra_produto(Lista *Lista_Prod)
 {
-
   printf("Entre com o nome do produto:");
   char nome[50];
   scanf("%s", nome);
-  lista_push(Lista_Prod, nome, strlen(nome) + 1);
+  
+  char *produto = malloc(strlen(nome) + 1);  
+  if (produto == NULL) {
+    printf("Erro ao alocar memória!\n");
+    return;
+  }
+  strcpy(produto, nome);
+  
+  lista_push(Lista_Prod, produto, strlen(produto) + 1);
   printf("Produto cadastrado com sucesso!\n");
 }
 
