@@ -9,7 +9,7 @@ typedef struct ListaBloco
 {
   struct ListaBloco *anterior;
   struct ListaBloco *proximo;
-  PilhaBloco *pilha;
+  Pilha *pilha;
   Bloco *bloco;
 } ListaBloco;
 

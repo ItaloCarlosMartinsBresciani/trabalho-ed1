@@ -4,7 +4,7 @@
 typedef struct
 {
   unsigned long tamanho;
-  char dado[];
+  void *dado;
 } Bloco;
 
 Bloco *bloco_alocar(void *dado, unsigned long tamanho);

@@ -43,8 +43,8 @@ ListaBloco *lista_pop(Lista *lista)
             lista->inicio = lista->inicio->proximo;
             lista->inicio->anterior = NULL;
         }
-        return aux;
         aux->pilha=NULL;
+        return aux;
     }
 }
 
@@ -52,24 +52,36 @@ void lista_print(Lista *lista)
 {
     assert(lista != NULL);
     ListaBloco *aux = lista->inicio;
+    PilhaBloco *aux2 = aux->pilha->topo;
+    FilaBloco *aux3 = aux2->fila->inicio;
     while (aux != NULL)
     {
-
         printf("%s\n", aux->bloco->dado);
-        printf("%s\n", aux->pilha->bloco->dado);
+        while(aux2 != NULL){
+            printf("%s\n", aux2->bloco->dado);
+            while (aux3 != NULL){
+                printf("%s\n", aux3->bloco->dado);
+                aux3 = aux3->proximo;
+            }
+            aux2 = aux2->anterior;
+        }
         aux = aux->proximo;
-    }
+    } 
 }
 
 void lista_print_inv(Lista *lista)
 {
     assert(lista != NULL);
     ListaBloco *aux = lista->fim;
+    PilhaBloco *aux2 = aux->pilha->topo;
     while (aux != NULL)
     {
         printf("%s\n", aux->bloco->dado);
-        printf("%s\n", aux->pilha->bloco->dado);
-        aux = aux->anterior;
+        while(aux2 != NULL){
+            printf("%s\n", aux2->bloco->dado);
+            aux2 = aux2->anterior;
+        }
+        aux = aux->proximo;
     }
 }
 
@@ -77,12 +89,16 @@ void lista_push(Lista *lista, void *dado, unsigned long tamanho)
 {
     Bloco *B = bloco_alocar(dado, tamanho);
     assert(B != NULL);
+    printf("erro 1");
 
     ListaBloco *Lista_bloco = (ListaBloco *)malloc(sizeof(ListaBloco));
     assert(Lista_bloco != NULL);
-    
+    printf("erro 2");
+
     Pilha *P; //criamos uma pilha de lances ligado a cada produto (listabloco)
     pilha_init(P);
+
+    printf("erro 3");
 
     Lista_bloco->pilha= P;
     Lista_bloco->bloco = B;

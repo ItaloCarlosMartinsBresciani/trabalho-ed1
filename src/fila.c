@@ -3,6 +3,7 @@
 #include "bloco.h"
 #include <stdlib.h>
 #include <assert.h>
+#include "pilha.h"
 
 void fila_init(Fila *fila){
     fila->inicio=NULL;
@@ -33,9 +34,10 @@ void fila_push(Fila *fila, void *dado, unsigned long tamanho) {
     fila->fim->proximo = NULL;
     fila->total++;
     
+    
 }
 
-FilaBloco*fila_pop(Fila *fila) {
+FilaBloco *fila_pop(Fila *fila) {
 
     if (!fila_vazia(fila)){
         FilaBloco *aux = fila->inicio;
